@@ -1,0 +1,56 @@
+﻿using Backend.Business.Implimentation;
+using Backend.Business.Interfaces;
+using Backend.Shared.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+
+
+namespace Backend.Api.Controllers
+{
+    [ApiController]
+    [Route("api/accounts")]
+    public sealed class AccountController(IAccountLogic logic) : SecureController
+    {
+        //private members
+        private readonly IAccountLogic _logic = logic;
+
+         
+
+        //endpoints
+        [HttpPost]
+        //[LogParameters]
+        public async Task<IActionResult> PostAccount(PostAccountRequest request)
+        {
+            try
+            {
+                await _logic.PostAccountAsync(request).ConfigureAwait(false);
+
+                return Ok();
+            }
+            catch (Exception exception)
+            {
+               //capture with telemetry
+               return StatusCode(500, exception.Message);
+            }
+        }
+
+        [HttpDelete]
+        [AllowAnonymous]
+        //[LogParameters]
+        public async Task<IActionResult> DeleteAccount()
+        {
+            try
+            {
+                await _logic.DeleteAccountAsync(UserId).ConfigureAwait(false);
+
+                return Ok();
+            }
+            catch (Exception exception)
+            {
+                //capture with telemetry
+                return StatusCode(500, exception.Message);
+            }
+        }
+    }
+}
