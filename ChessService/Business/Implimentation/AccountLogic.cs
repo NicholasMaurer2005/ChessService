@@ -1,16 +1,20 @@
-﻿using Backend.Business.Interfaces;
+﻿using Azure.Core;
+using Backend.Business.Interfaces;
 using Backend.DataAccess.Interfaces;
 using Backend.Shared.Models;
+using ChessService.Shared.Helpers;
+using ChessService.Shared.Models;
+using RestSharp;
 
 
 
 namespace Backend.Business.Implimentation
 {
-    public sealed class AccountLogic(IAccountDataAccess accountDataAccess, ISharedDataAccess sharedDataAccess) : SharedLogic(sharedDataAccess), IAccountLogic
+    public sealed class AccountLogic(IAccountDataAccess accountDataAccess, IDescopeHelper descopeHelper, ISharedDataAccess sharedDataAccess) : SharedLogic(sharedDataAccess), IAccountLogic
     {
         //private members
         private readonly IAccountDataAccess _dataAccess = accountDataAccess;
-
+        private readonly IDescopeHelper _descope = descopeHelper;
 
 
         //public methods
@@ -26,6 +30,16 @@ namespace Backend.Business.Implimentation
             var subscriberId = await SubscriberIdOrThrowAsync(userId).ConfigureAwait(false);
 
             await _dataAccess.DeleteAccountAsync(subscriberId).ConfigureAwait(false);
+        }
+
+        public async Task<PostRefreshResponse> PostRefreshAsync(string userId, PostRefreshRequest request)
+        {
+            var token = await _descope.ExchangeTokenAsync(request.RefreshToken).ConfigureAwait(false);
+
+            return new PostRefreshResponse 
+            { 
+                AccessToken = token 
+            };
         }
     }
 }

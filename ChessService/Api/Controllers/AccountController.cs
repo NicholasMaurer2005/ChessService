@@ -1,6 +1,7 @@
 ﻿using Backend.Business.Implimentation;
 using Backend.Business.Interfaces;
 using Backend.Shared.Models;
+using ChessService.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,6 +46,24 @@ namespace Backend.Api.Controllers
                 await _logic.DeleteAccountAsync(UserId).ConfigureAwait(false);
 
                 return Ok();
+            }
+            catch (Exception exception)
+            {
+                //capture with telemetry
+                return StatusCode(500, exception.Message);
+            }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        //[LogParameters]
+        public async Task<IActionResult> PostRefresh(PostRefreshRequest request)
+        {
+            try
+            {
+                var response = await _logic.PostRefreshAsync(UserId, request).ConfigureAwait(false);
+
+                return Ok(response);
             }
             catch (Exception exception)
             {
