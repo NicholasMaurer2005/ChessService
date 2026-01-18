@@ -1,13 +1,13 @@
 ﻿using Backend.DataAccess.Entities;
-using Backend.DataAccess.Interfaces;
-using Backend.Shared.Models;
+using ChessService.DataAccess.Interfaces;
+using ChessService.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Runtime.CompilerServices;
 
 
 
-namespace Backend.DataAccess.Implimentation
+namespace ChessService.DataAccess.Implimentation
 {
     public sealed class AccountDataAccess(IChessContext context) : IAccountDataAccess
     {

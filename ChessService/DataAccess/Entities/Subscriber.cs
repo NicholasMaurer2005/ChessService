@@ -1,7 +1,4 @@
-﻿
-
-
-namespace Backend.DataAccess.Entities
+﻿namespace ChessService.DataAccess.Entities
 {
     public sealed class Subscriber
     {

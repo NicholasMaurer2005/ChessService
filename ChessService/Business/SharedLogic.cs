@@ -1,9 +1,9 @@
-﻿using Backend.DataAccess.Interfaces;
-using Backend.Shared.Exceptions;
+﻿using Backend.Shared.Exceptions;
+using ChessService.DataAccess.Interfaces;
 
 
 
-namespace Backend.Business
+namespace ChessService.Business
 {
     public class SharedLogic(ISharedDataAccess dataAccess)
     {

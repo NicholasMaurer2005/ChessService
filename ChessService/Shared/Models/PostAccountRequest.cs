@@ -1,7 +1,4 @@
-﻿
-
-
-namespace Backend.Shared.Models
+﻿namespace ChessService.Shared.Models
 {
     public sealed class PostAccountRequest
     {

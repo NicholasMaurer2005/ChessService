@@ -1,13 +1,12 @@
 ﻿using Backend.Business.Implimentation;
-using Backend.Business.Interfaces;
-using Backend.Shared.Models;
+using ChessService.Business.Interfaces;
 using ChessService.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
 
-namespace Backend.Api.Controllers
+namespace ChessService.Api.Controllers
 {
     [ApiController]
     [Route("api/accounts")]

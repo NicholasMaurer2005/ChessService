@@ -1,8 +1,8 @@
-﻿using Backend.Shared.Models;
+﻿using ChessService.Shared.Models;
 
 
 
-namespace Backend.DataAccess.Interfaces
+namespace ChessService.DataAccess.Interfaces
 {
     public interface IAccountDataAccess
     {

@@ -1,9 +1,10 @@
-﻿using Backend.DataAccess.Interfaces;
+﻿using ChessService.DataAccess;
+using ChessService.DataAccess.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 
 
-namespace Backend.DataAccess.Implimentation
+namespace ChessService.DataAccess.Implimentation
 {
     public sealed class SharedDataAccess(IChessContext context) : ISharedDataAccess
     {

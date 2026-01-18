@@ -1,14 +1,14 @@
 ﻿using Azure.Core;
-using Backend.Business.Interfaces;
-using Backend.DataAccess.Interfaces;
-using Backend.Shared.Models;
+using ChessService.Business;
+using ChessService.Business.Interfaces;
+using ChessService.DataAccess.Interfaces;
 using ChessService.Shared.Helpers;
 using ChessService.Shared.Models;
 using RestSharp;
 
 
 
-namespace Backend.Business.Implimentation
+namespace ChessService.Business.Implimentation
 {
     public sealed class AccountLogic(IAccountDataAccess accountDataAccess, IDescopeHelper descopeHelper, ISharedDataAccess sharedDataAccess) : SharedLogic(sharedDataAccess), IAccountLogic
     {

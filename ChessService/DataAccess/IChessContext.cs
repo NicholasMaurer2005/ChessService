@@ -1,9 +1,9 @@
-﻿using Backend.DataAccess.Entities;
+﻿using ChessService.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
 
 
-namespace Backend.DataAccess
+namespace ChessService.DataAccess
 {
     public interface IChessContext
     {

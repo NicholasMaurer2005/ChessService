@@ -4,7 +4,7 @@ using System.Security.Claims;
 
 
 
-namespace Backend.Api.Controllers
+namespace ChessService.Api.Controllers
 {
     [Authorize]
     public class SecureController : ControllerBase

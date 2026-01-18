@@ -1,9 +1,8 @@
-﻿using Backend.Shared.Models;
-using ChessService.Shared.Models;
+﻿using ChessService.Shared.Models;
 
 
 
-namespace Backend.Business.Interfaces
+namespace ChessService.Business.Interfaces
 {
     public interface IAccountLogic
     {

@@ -1,7 +1,4 @@
-﻿
-
-
-namespace Backend.DataAccess.Interfaces
+﻿namespace ChessService.DataAccess.Interfaces
 {
     public interface ISharedDataAccess
     {

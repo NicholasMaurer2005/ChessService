@@ -1,12 +1,11 @@
-
-using Backend.Business.Implimentation;
-using Backend.Business.Interfaces;
-using Backend.DataAccess;
-using Backend.DataAccess.Implimentation;
-using Backend.DataAccess.Interfaces;
+using ChessService.Business.Implimentation;
+using ChessService.Business.Interfaces;
+using ChessService.DataAccess;
+using ChessService.DataAccess.Implimentation;
+using ChessService.DataAccess.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Backend
+namespace ChessService
 {
     public class Program
     {
