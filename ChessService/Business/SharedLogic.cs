@@ -1,17 +1,13 @@
-﻿using Backend.Shared.Exceptions;
+﻿using ChessService.Shared.Exceptions;
 using ChessService.DataAccess.Interfaces;
 
 
 
 namespace ChessService.Business
 {
-    public class SharedLogic(ISharedDataAccess dataAccess)
+    public class SharedLogic(ISharedDataAccess _dataAccess)
     {
-        //private members
-        private readonly ISharedDataAccess _dataAccess = dataAccess;
-
-
-
+        
         //public methods
         public async Task<bool> SubscriberExistsAsync(string userId)
         {

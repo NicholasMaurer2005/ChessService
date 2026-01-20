@@ -5,7 +5,11 @@ namespace ChessService.Shared.Helpers
     public sealed class DescopeHelper(RestClient _client, IOptions<DescopeHelper.AuthOptions> _options): IAuthHelper
     {
         //helpers
-        public sealed record AuthOptions(string ClientId, string ClientSecret);
+        public sealed class AuthOptions
+        {
+            public required string ClientId { get; set; }
+            public required string ClientSecret { get; set; }
+        }
 
         #pragma warning disable IDE1006 //specific names for deserialization, disable name violation warning.
         private sealed record TokenResponse(

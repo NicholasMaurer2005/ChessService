@@ -44,7 +44,12 @@ namespace ChessService.Business.Implimentation
 
         public async Task<PostAuthorizeResponse> PostAuthorizeAsync(PostAuthorizeRequest request)
         {
-            
+            var token = await _descope.AuthorizeAsync(request.Code).ConfigureAwait(false);
+
+            return new PostAuthorizeResponse
+            {
+
+            }
         }
     }
 }

@@ -9,13 +9,8 @@ using System.Runtime.CompilerServices;
 
 namespace ChessService.DataAccess.Implimentation
 {
-    public sealed class AccountDataAccess(IChessContext context) : IAccountDataAccess
+    public sealed class AccountDataAccess(IChessContext _context) : IAccountDataAccess
     {
-        //private members
-        private readonly IChessContext _context = context;
-
-
-
         //public methods
         public async Task PostAccountAsync(PostAccountRequest request)
         {
