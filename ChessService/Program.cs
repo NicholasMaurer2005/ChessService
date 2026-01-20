@@ -6,6 +6,7 @@ using ChessService.DataAccess.Interfaces;
 using ChessService.Shared.Exceptions;
 using ChessService.Shared.Helpers;
 using Microsoft.EntityFrameworkCore;
+using RestSharp;
 
 //DESCOPE CLIENT SECRET EXPIRES: January 20, 2028
 
@@ -25,16 +26,18 @@ namespace ChessService
             builder.Services.AddScoped<ISharedDataAccess, SharedDataAccess>();
             builder.Services.AddScoped<IAuthHelper, DescopeHelper>();
 
+            builder.Services.AddSingleton(_ => new RestClient("https://api.descope.com"));
+
             builder.Services.Configure<DescopeHelper.AuthOptions>(options =>
             {
-                options.ClientId = builder.Configuration["DESCOPE_CLIENT_ID"] ?? throw new ConfigurationException("DESCOPE_CLIENT_SECRET");
+                options.ClientId = builder.Configuration["DESCOPE_PRODUCT_ID"] ?? throw new ConfigurationException("DESCOPE_CLIENT_SECRET");
                 options.ClientSecret = builder.Configuration["DESCOPE_CLIENT_SECRET"] ?? throw new ConfigurationException("DESCOPE_CLIENT_SECRET");
             });
 
             builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
             {
                 options.Authority = "https://api.descope.com";
-                options.Audience = builder.Configuration["DESCOPE_CLIENT_ID"] ?? throw new ConfigurationException("DESCOPE_CLIENT_SECRET"); ;         
+                options.Audience = builder.Configuration["DESCOPE_PRODUCT_ID"] ?? throw new ConfigurationException("DESCOPE_CLIENT_SECRET"); ;         
             });
 
             builder.Services.AddEndpointsApiExplorer();

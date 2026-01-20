@@ -1,9 +1,8 @@
-﻿using Backend.DataAccess.Entities;
+﻿using ChessService.DataAccess.Entities;
 using ChessService.DataAccess.Interfaces;
 using ChessService.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
-using System.Runtime.CompilerServices;
 
 
 

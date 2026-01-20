@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using Microsoft.Extensions.Options;
 
 namespace ChessService.Shared.Helpers
 {
@@ -29,7 +30,7 @@ namespace ChessService.Shared.Helpers
             var request = new RestRequest("oauth2/v1/token", Method.Post);
 
             request.AddParameter("grant_type", "refresh_token");
-            request.AddParameter("client_id", _options.ClientId);
+            request.AddParameter("client_id", _options.Value.ClientId);
             request.AddParameter("refresh_token", refreshToken);
 
             var response = await _client.ExecuteAsync<TokenResponse>(request).ConfigureAwait(false);
@@ -42,8 +43,8 @@ namespace ChessService.Shared.Helpers
 
             request.AddParameter("grant_type", "authorization_code");
             request.AddParameter("code", code);
-            request.AddParameter("client_id", _options.ClientId);
-            request.AddParameter("client_secret", _options.ClientSecret);
+            request.AddParameter("client_id", _options.Value.ClientId);
+            request.AddParameter("client_secret", _options.Value.ClientSecret);
             request.AddParameter("redirect_uri", "uknown");
 
             var response = await _client.ExecuteAsync<TokenResponse>(request);

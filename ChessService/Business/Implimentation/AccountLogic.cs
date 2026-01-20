@@ -48,8 +48,8 @@ namespace ChessService.Business.Implimentation
 
             return new PostAuthorizeResponse
             {
-
-            }
+                RefreshToken = token
+            };
         }
     }
 }

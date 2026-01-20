@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChessService.Api.Controllers
 {
-    [ApiController]
     [Route("api/accounts")]
     public sealed class AccountController(IAccountLogic logic) : SecureController
     {
