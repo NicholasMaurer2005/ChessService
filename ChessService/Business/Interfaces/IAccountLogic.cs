@@ -10,6 +10,8 @@ namespace ChessService.Business.Interfaces
 
         Task DeleteAccountAsync(string userId);
 
-        Task<PostRefreshResponse> PostRefreshAsync(string userId, PostRefreshRequest request);
+        Task<PostRefreshResponse> PostRefreshAsync(PostRefreshRequest request);
+
+        Task<PostAuthorizeResponse> PostAuthorizeAsync(PostAuthorizeRequest request);
     }
 }

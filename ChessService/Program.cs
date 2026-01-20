@@ -3,7 +3,10 @@ using ChessService.Business.Interfaces;
 using ChessService.DataAccess;
 using ChessService.DataAccess.Implimentation;
 using ChessService.DataAccess.Interfaces;
+using ChessService.Shared.Helpers;
 using Microsoft.EntityFrameworkCore;
+
+//DESCOPE CLIENT SECRET EXPIRES: January 20, 2028
 
 namespace ChessService
 {
@@ -19,6 +22,13 @@ namespace ChessService
             builder.Services.AddScoped<IAccountDataAccess, AccountDataAccess>();
             builder.Services.AddScoped<IChessContext, ChessContext>();
             builder.Services.AddScoped<ISharedDataAccess, SharedDataAccess>();
+            builder.Services.AddScoped<IAuthHelper, DescopeHelper>("https://api.descope.com");
+
+            builder.Services.Configure<DescopeHelper.AuthOptions>(options =>
+            {
+                options.ClientId = builder.Configuration["DESCOPE_CLIENT_ID"],
+                options.ClientSecret = builder.Configuration["DESCOPE_CLIENT_SECRET"] ?? throw new ConfigurationErrorsException()
+            });
 
             builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
             {

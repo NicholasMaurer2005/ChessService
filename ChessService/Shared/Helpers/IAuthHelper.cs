@@ -1,7 +1,9 @@
 ﻿namespace ChessService.Shared.Helpers
 {
-    public interface IDescopeHelper
+    public interface IAuthHelper
     {
         Task<string> ExchangeTokenAsync(string refreshToken);
+
+        Task<string> AuthorizeAsync(string code);
     }
 }

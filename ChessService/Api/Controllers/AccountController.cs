@@ -1,5 +1,4 @@
-﻿using Backend.Business.Implimentation;
-using ChessService.Business.Interfaces;
+﻿using ChessService.Business.Interfaces;
 using ChessService.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -60,11 +59,29 @@ namespace ChessService.Api.Controllers
         {
             try
             {
-                var response = await _logic.PostRefreshAsync(UserId, request).ConfigureAwait(false);
+                var response = await _logic.PostRefreshAsync(request).ConfigureAwait(false);
 
                 return Ok(response);
             }
             catch (Exception exception)
+            {
+                //capture with telemetry
+                return StatusCode(500, exception.Message);
+            }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        //[LogParameters]
+        public async Task<IActionResult> PostAuthorize(PostAuthorizeRequest request)
+        {
+            try
+            {
+                var response = await _logic.PostAuthorizeAsync(request).ConfigureAwait(false);
+
+                return Ok(response);
+            }
+            catch(Exception exception)
             {
                 //capture with telemetry
                 return StatusCode(500, exception.Message);

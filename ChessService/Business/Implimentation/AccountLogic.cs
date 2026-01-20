@@ -10,11 +10,11 @@ using RestSharp;
 
 namespace ChessService.Business.Implimentation
 {
-    public sealed class AccountLogic(IAccountDataAccess accountDataAccess, IDescopeHelper descopeHelper, ISharedDataAccess sharedDataAccess) : SharedLogic(sharedDataAccess), IAccountLogic
+    public sealed class AccountLogic(IAccountDataAccess accountDataAccess, IAuthHelper descopeHelper, ISharedDataAccess sharedDataAccess) : SharedLogic(sharedDataAccess), IAccountLogic
     {
         //private members
         private readonly IAccountDataAccess _dataAccess = accountDataAccess;
-        private readonly IDescopeHelper _descope = descopeHelper;
+        private readonly IAuthHelper _descope = descopeHelper;
 
 
         //public methods
@@ -32,7 +32,7 @@ namespace ChessService.Business.Implimentation
             await _dataAccess.DeleteAccountAsync(subscriberId).ConfigureAwait(false);
         }
 
-        public async Task<PostRefreshResponse> PostRefreshAsync(string userId, PostRefreshRequest request)
+        public async Task<PostRefreshResponse> PostRefreshAsync(PostRefreshRequest request)
         {
             var token = await _descope.ExchangeTokenAsync(request.RefreshToken).ConfigureAwait(false);
 
@@ -40,6 +40,11 @@ namespace ChessService.Business.Implimentation
             { 
                 AccessToken = token 
             };
+        }
+
+        public async Task<PostAuthorizeResponse> PostAuthorizeAsync(PostAuthorizeRequest request)
+        {
+            
         }
     }
 }
